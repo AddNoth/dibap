@@ -1,0 +1,216 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type: text/json" content="text/html; charset=utf-8">
+		<meta http-equiv="Content-Type: text/javascript" content="text/html; charset=utf-8">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<script type="text/javascript" src="../../js/jquery.js"></script>
+		<script type="text/javascript" src="../../js/geturi.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/question.css">
+		<script type="text/javascript">
+    alert('ouverture script');
+			$(document).ready(function(){
+				var domain = "http://dibap.esy.es/host/sequenceRandom/";
+				var dibapers = decodeURI(getUrlVars()["dibapers"]);
+				var sequence_id = decodeURI(getUrlVars()["sequence_id"]);
+                var sequence_iteration = decodeURI(getUrlVars()["sequence_iteration"]);
+                var sequence_question_id = decodeURI(getUrlVars()["sequence_question_id"]);
+                var question_id = decodeURI(getUrlVars()["question_id"]);
+                var question_titre = decodeURI(getUrlVars()["question_titre"]);
+                var question_categorie = decodeURI(getUrlVars()["question_categorie"]);
+                var question_plus = decodeURI(getUrlVars()["question_plus"]);
+                var question_moins = decodeURI(getUrlVars()["question_moins"]);
+                var question_nb_vote = decodeURI(getUrlVars()["question_nb_vote"]);
+                var dibapers = decodeURI(getUrlVars()["dibapers"]);
+                sequence_iteration = parseInt(sequence_iteration);
+                question_plus = parseInt(question_plus);
+                question_moins = parseInt(question_moins);
+                question_nb_vote = parseInt(question_nb_vote);
+                console.log('variable declare');
+
+                //$("#sequence_question_id").val(sequence_question_id);
+                //$("#question_id").val(question_id);
+				//document.getElementById("sequence_iteration").innerHTML = sequence_iteration;
+				document.getElementById("question_titre").innerHTML 	= question_titre;
+				
+
+				/************************************************/
+                /************************************************/
+                //	VOTE PLUS
+                /************************************************/
+                /************************************************/
+                console.log('moins');
+				$("#plus").click(function(){
+					$.ajax({
+						type: "GET",
+						url: domain+"host_sequence_insert_plus.php",
+						dataType:'json',
+						data: {
+							'question_id': question_id,
+							'question_user_vote': dibapers
+						},
+						crossDomain: true,
+						cache: false
+					});
+					setTimeout(function() {
+					question_plus = question_plus +  1;
+					question_nb_vote = question_nb_vote + 1;
+					document.location.href="play_sequence_random_result.html?sequence_id="+sequence_id+"&sequence_iteration="+sequence_iteration+"&sequence_question_id="+sequence_question_id+"&question_id="+sequence_question_id+"&question_titre="+question_titre+"&question_categorie="+question_categorie+"&question_plus="+question_plus+"&question_moins="+question_moins+"&question_nb_vote="+question_nb_vote+"&dibapers="+dibapers;
+					}, 10);
+		        });
+
+		        /************************************************/
+                /************************************************/
+                //	VOTE MOINS
+                /************************************************/
+                /************************************************/
+                console.log('moins');
+				$("#moins").click(function(){
+					$.ajax({
+						type: "GET",
+						url: domain+"host_sequence_insert_moins.php",
+						dataType:'json',
+						data: {
+							'question_id': question_id,
+							'question_user_vote' : dibapers
+						},
+						crossDomain: true,
+						cache: false
+					});
+					setTimeout(function() {
+					question_moins = question_moins +  1;
+					question_nb_vote = question_nb_vote + 1;
+					document.location.href="play_sequence_random_result.html?sequence_id="+sequence_id+"&sequence_iteration="+sequence_iteration+"&sequence_question_id="+sequence_question_id+"&question_id="+sequence_question_id+"&question_titre="+question_titre+"&question_categorie="+question_categorie+"&question_plus="+question_plus+"&question_moins="+question_moins+"&question_nb_vote="+question_nb_vote+"&dibapers="+dibapers;
+					}, 10);
+		        });
+
+				/************************************************/
+                /************************************************/
+                //	SWITCH
+                /************************************************/
+                /************************************************/
+                console.log("SEQUENCE ID ==> "+sequence_id);
+                console.log("SEQUENCE ITERATION ==> "+sequence_iteration);
+				if (sequence_iteration < 10) {
+		            var url= domain+"host_sequence_next.php?sequence_id="+sequence_id+"&sequence_iteration="+sequence_iteration;
+		            $.getJSON(url,function(result){
+		                console.log(result);
+		                $.each(result, function(i, field){ // Retourne un seul resultat
+		                    var sequence_id_next = field.sequence_id;
+		                    var sequence_iteration_next = field.sequence_iteration;
+		                    var sequence_question_id_next = field.sequence_question_id;
+		                    var question_id_next = field.question_id;
+		                    var question_titre_next = field.question_titre;
+		                    var question_categorie_next = field.question_categorie;
+		                    var question_plus_next = field.question_plus;
+		                    var question_moins_next = field.question_moins;
+		                    var question_nb_vote_next = field.question_nb_vote;
+		                    
+		                    // SWITCH FUNCTION
+							$("#switch").click(function(){
+								console.log('switch 1');
+								// Ajout 1 view
+				                $.ajax({
+									type: "GET",
+									url: domain+"host_sequence_insert_switch.php",
+									dataType:'json',
+									data: {
+										'question_id': question_id
+									},
+									crossDomain: true,
+									cache: false
+								});
+								setTimeout(function() {
+									console.log('switch 2');
+									document.location.href="play_sequence_random.html?sequence_id="+sequence_id_next+"&sequence_iteration="+sequence_iteration_next+"&question_id="+sequence_question_id_next+"&question_titre="+question_titre_next+"&question_categorie="+question_categorie_next+"&question_plus="+question_plus_next+"&question_moins="+question_moins_next+"&question_nb_vote="+question_nb_vote_next+"&dibapers="+dibapers;
+								}, 10);
+								console.log('switch 3');
+							});
+		                });
+		            });
+				}else{
+					$("#switch").click(function(){
+						// Ajout 1 view
+				        $.ajax({
+							type: "GET",
+							url: domain+"host_sequence_insert_switch.php",
+							dataType:'json',
+							data: {
+								'question_id': question_id
+							},
+							crossDomain: true,
+							cache: false
+						});
+						setTimeout(function() {
+							document.location.href="sequence_random_ready.html";
+						}, 10);
+					});
+				}
+				function displayImageCategorie(){
+					d = document.getElementById('question_categorie');
+					if(question_categorie=='politique'){
+						d.innerHTML = '<img src="../../img/themes/politique.png">';
+					}else if(question_categorie=='actu'){
+						d.innerHTML = '<img src="../../img/themes/actualite.png">';
+					}else if(question_categorie=='cuisine'){
+						d.innerHTML = '<img src="../../img/themes/cuisine.png">';
+					}else if(question_categorie=='cinema'){
+						d.innerHTML = '<img src="../../img/themes/cinema.png">';
+					}else if(question_categorie=='sport'){
+						d.innerHTML = '<img src="../../img/themes/sport.png">';
+					}else if(question_categorie=='musique'){
+						d.innerHTML = '<img src="../../img/themes/musique.png">';
+					}else if(question_categorie=='paint'){
+						d.innerHTML = '<img src="../../img/themes/paint.png">';
+					}else if(question_categorie=='random'){
+						d.innerHTML = '<img src="../../img/themes/random.png">';
+					}
+				}
+				displayImageCategorie();
+			});
+		</script>
+	</head>
+	<body onload="">
+		<div clas="app" id="app">
+			<div class="bar-header" id="bar-header">
+				<div class="categorie" id="question_categorie"></div>
+				<h1 class="title">question</h1>
+				<a class="button button-right" onclick="root_menu();">
+                    <img src="../../img/ui/navicon.png" height="80%" style="margin-top:10%;margin-right:20px;">
+                </a>
+			</div>
+			<div id="question">
+				<div id="question-container">
+					<div class="question-block-pointer">
+						<div class="pointer"><div class="inside"></div></div>
+					</div>
+					<div class="the_question">
+						<h1 id="question_titre"></h1>
+					</div>
+				</div>
+			</div>
+			<div id="action">
+				<div id="progressTime" class="block-progress">
+					<div class="block-progress-background"></div>
+				</div>
+				<div id="plus" class="button-vote">
+					<img src="../../img/ui/plus.png" alt="vote-plus" title="vote-plus">
+					<br><span>OUI</span>
+				</div>
+				<div id="moins" class="button-vote">
+					<img src="../../img/ui/moins.png" alt="vote-moins" title="vote-moins">
+					<br><span>NON</span>
+				</div>
+				<div id="switch" class="block-switch">
+					<div id="switch" class="button-switch">
+						<img src="../../img/ui/next-black.png" alt="next" title="vote-next">
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/navigation_main.js"></script>
+	</body>
+</html>

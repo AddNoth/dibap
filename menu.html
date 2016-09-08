@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type: text/json" content="text/html; charset=utf-8">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+        <meta http-equiv="Pragma" content="no-cache">
+        <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+        <title>Dibap 1.0</title>
+        <style type="text/css">
+        .interface a{text-align: center;display: block;margin: 0 auto; padding: 20px 40px 20px 40px;background: rgba(195,215,225, 0.2);color: white; width: 80%; margin-top: 10px;font-size: 1.8em;text-decoration: none;border-radius: 30px;}
+        #app{opacity: 0;}
+        </style>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        
+        <script type="text/javascript" src="js/navigation_menu.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+    </head>
+    <body onload="displayApp();">
+        <div class="app" id="app">
+            <div class="bar-header" id="bar-header">
+                <a class="button button-left" href="javascript:history.go(-2);">
+                    <img src="img/ui/chevron-left.png" height="50%" style="margin-top:25%;margin-left:10px;">
+                </a>
+                <h1 class="title">menu</h1>
+                
+                <!--<a class="button button-right" href="readjson.html">Read JSON</a>-->
+            </div>
+            <div class="interface" id="menu_interface">
+                <a href="#" id="root_home">Home</button>
+                <a href="#" id="root_players">Nombre de joueurs</button>
+                <a href="#" id="root_theme_1p">Thèmes - 1 joueur</button>
+                
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/navigation_main.js"></script>
+    </body>
+</html>

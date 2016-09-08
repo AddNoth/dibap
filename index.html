@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type: text/json" content="text/html; charset=utf-8">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="-1">
+        <title>Dibap 1.0</title>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        
+        <script type="text/javascript" src="js/navigation_menu.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+    </head>
+    <body onLoad="displayElementsHome();" onreload="displayElementsHome();">
+        <div class="app" id="app">
+            <div class="bar-header" id="bar-header">
+                <h1 class="title">dibap'</h1>
+                <a class="button button-right" href="menu.html" onclick="undisplayElementsHome();">
+                    <img src="img/ui/navicon.png" height="80%" style="margin-top:10%;margin-right:20px;" onclick="root_menu();">
+                </a>
+                <!--<a class="button button-right" href="readjson.html">Read JSON</a>-->
+            </div>
+            <div class="interface" id="interface_content">
+                <div class="dibap-train"></div>
+                <div class="dibap-train"></div>
+                <div class="dibap-train"></div>
+                <div class="main" id="main_play">
+                    <img id="main_play_img" src="img/ui/play-deep-blue.png">
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/navigation_main.js"></script>
+    </body>
+</html>

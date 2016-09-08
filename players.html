@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type: text/json" content="text/html; charset=utf-8">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+        <meta http-equiv="Pragma" content="no-cache">
+        <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+        <title>Dibap 1.0</title>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        
+        <script type="text/javascript" src="js/navigation_menu.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+    </head>
+    <body onload="displayElementsPlayers();">
+        <div class="app" id="app">
+            <div class="bar-header" id="bar-header">
+                <!--<a class="button button-left" href="javascript: history.go(-1);">
+                    <img src="img/ui/chevron-left.png" height="50%" style="margin-top:25%;margin-left:10px;">
+                </a>-->
+                <h1 class="title">mode</h1>
+                <a class="button button-right" onclick="root_menu();">
+                    <img src="img/ui/navicon.png" height="80%" style="margin-top:10%;margin-right:20px;">
+                </a>
+                <!--<a class="button button-right" href="readjson.html">Read JSON</a>-->
+            </div>
+            <div class="interface">
+                <div class="dibap-train"></div>
+                <div class="dibap-train"></div>
+                <div class="dibap-train"></div>
+                <div class="main_players" id="main_players">
+                    <div id="player_1">
+                        <img id="player_1_img" src="img/ui/1-player.png">
+                    </div>
+                    <div class="player_2" id="player_2">
+                        <img class="player_2_img" id="player_2_img" src="img/ui/2-players.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/navigation_main.js"></script>
+    </body>
+</html>

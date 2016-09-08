@@ -1,0 +1,123 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="Content-Type: text/json" content="text/html; charset=utf-8">
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+		<script type="text/javascript" src="../../js/jquery.js"></script>
+		<script type="text/javascript" src="../../js/geturi.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../css/question.css">
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var domain = "http://dibap.esy.es/host/sequenceRandom/";
+				var dibapers = decodeURI(getUrlVars()["dibapers"]);
+				var sequence_id = decodeURI(getUrlVars()["sequence_id"]);
+                var sequence_iteration = decodeURI(getUrlVars()["sequence_iteration"]);
+                var question_id = decodeURI(getUrlVars()["question_id"]);
+                var question_titre = decodeURI(getUrlVars()["question_titre"]);
+                var question_categorie = decodeURI(getUrlVars()["question_categorie"]);
+                var question_plus = decodeURI(getUrlVars()["question_plus"]);
+                var question_moins = decodeURI(getUrlVars()["question_moins"]);
+                var question_nb_vote = decodeURI(getUrlVars()["question_nb_vote"]);
+                sequence_iteration = parseInt(sequence_iteration);
+                question_plus = parseInt(question_plus);
+                question_moins = parseInt(question_moins);
+                question_nb_vote = parseInt(question_nb_vote);
+
+                //$("#sequence_question_id").val(sequence_question_id);
+                //$("#question_id").val(question_id);
+//document.getElementById("sequence_iteration").innerHTML = sequence_iteration;
+//document.getElementById("question_titre").innerHTML 	= question_titre;
+document.getElementById("question_categorie").innerHTML = question_categorie;
+document.getElementById("question_plus").innerHTML 		= question_plus;
+document.getElementById("question_moins").innerHTML 	= question_moins;
+document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
+				
+                /************************************************/
+                /************************************************/
+                //	SWITCH
+                /************************************************/
+                /************************************************/
+                console.log("SEQUENCE ID ==> "+sequence_id);
+                console.log("SEQUENCE ITERATION ==> "+sequence_iteration);
+				if (sequence_iteration < 10) {
+		            var url= domain+"host_sequence_next.php?sequence_id="+sequence_id+"&sequence_iteration="+sequence_iteration;
+		            $.getJSON(url,function(result){
+		                console.log(result);
+		                $.each(result, function(i, field){ // Retourne un seul resultat
+		                    var sequence_id_next = field.sequence_id;
+		                    var sequence_iteration_next = field.sequence_iteration;
+		                    var sequence_question_id_next = field.sequence_question_id;
+		                    var question_id_next = field.question_id;
+		                    var question_titre_next = field.question_titre;
+		                    var question_categorie_next = field.question_categorie;
+		                    var question_plus_next = field.question_plus;
+		                    var question_moins_next = field.question_moins;
+		                    var question_nb_vote_next = field.question_nb_vote;
+
+		                    // SWITCH FUNCTION
+							$("#switch").click(function(){
+								// Ajout 1 view
+				                $.ajax({
+									type: "GET",
+									url: domain+"host_sequence_insert_view.php",
+									dataType:'json',
+									data: {
+										'question_id': question_id
+									},
+									crossDomain: true,
+									cache: false
+								});
+								setTimeout(function() {
+									document.location.href="play_sequence_random.html?sequence_id="+sequence_id_next+"&sequence_iteration="+sequence_iteration_next+"&question_id="+sequence_question_id_next+"&question_titre="+question_titre_next+"&question_categorie="+question_categorie_next+"&question_plus="+question_plus_next+"&question_moins="+question_moins_next+"&question_nb_vote="+question_nb_vote_next+"&dibapers="+dibapers;
+								}, 10);
+							});
+		                });
+		            });
+				}else{
+					$("#switch").click(function(){
+						// Ajout 1 view
+				        $.ajax({
+							type: "GET",
+							url: domain+"host_sequence_insert_view.php",
+							dataType:'json',
+							data: {
+								'question_id': question_id
+							},
+							crossDomain: true,
+							cache: false
+						});
+						setTimeout(function() {
+							document.location.href="sequence_random_ready.html";
+						}, 10);
+					});
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<div class="header-question" style="margin-bottom:80px;">
+			<div>
+				<h3 id="question_categorie"></h3>
+				<a href="../../index.html" class="button button-clear">Home</a>
+			</div>
+		</div>
+		<div id="datavision">
+			<div id="datavision_container">
+				<div class="datavision_titre">
+					<h4>Data visualisation</h4>
+				</div>
+				<div class="datavision_result">
+					<h1>Vote pour : <span id="question_plus"></span></h1>
+					<h1>Vote contre : <span id="question_moins"></span></h1>
+					<h1>Nombre vote : <span id="question_nb_vote"></span></h1>
+				</div>	
+			</div>
+		</div>
+		<div id="action">
+			<input type="button" id="switch" class="button button-block" value="Switch"/>
+		</div> 
+		<script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+	</body>
+</html>

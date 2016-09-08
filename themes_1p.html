@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type: text/json" content="text/html; charset=utf-8">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, target-densitydpi=medium-dpi, user-scalable=0" />
+        <title>Dibap 1.0</title>
+        <script type="text/javascript" src="js/jquery.js"></script>
+        
+        <script type="text/javascript" src="js/navigation_menu.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+    </head>
+    <body onload="displayElementsTheme();">
+        <div class="app" id="app">
+            <div class="bar-header" id="bar-header">
+                <!--<a class="button button-left" href="javascript: history.go(-1);">
+                    <img src="img/ui/chevron-left.png" height="50%" style="margin-top:25%;margin-left:10px;">
+                </a>-->
+                <h1 class="title">thèmes</h1>
+                <a class="button button-right" onclick="root_menu();">
+                    <img src="img/ui/navicon.png" height="80%" style="margin-top:10%;margin-right:20px;">
+                </a>
+            </div>
+            <div class="interface">
+                <div class="dibap-train" style="height:45% !important;"></div>
+                <div class="dibap-train" style="height:45% !important;"></div>
+                <div class="dibap-train"></div>
+                <div id="main_themes">
+                    <!-- /// THEMES /// -->
+                    <div class="themes_elements" id="theme_style">
+                    </div>
+                    <!-- Politique -->
+                    <div class="themes_elements" id="theme_politique">
+                        <img class="theme_img" id="theme_politique_img" src="img/themes/politique.png">
+                    </div>
+                    <!-- Actu -->
+                    <div class="themes_elements" id="theme_actu">
+                        <img class="theme_img" id="theme_actu_img" src="img/themes/actualite.png">
+                    </div>
+                    <!-- Cinema -->
+                    <div class="themes_elements" id="theme_cinema">
+                        <img class="theme_img" id="theme_cinema_img" src="img/themes/cinema.png">
+                    </div>
+                    <!-- Paint -->
+                    <div class="themes_elements" id="theme_paint">
+                        <img class="theme_img" id="theme_paint_img" src="img/themes/paint.png">
+                    </div>
+                    <!-- Musique -->
+                    <div class="themes_elements" id="theme_musique">
+                        <img class="theme_img" id="theme_musique_img" src="img/themes/musique.png">
+                    </div>
+                    <!-- Cuisine -->
+                    <div class="themes_elements" id="theme_cuisine">
+                        <img class="theme_img" id="theme_cuisine_img" src="img/themes/cuisine.png">
+                    </div>
+                    <!-- Sport -->
+                    <div class="themes_elements" id="theme_sport">
+                        <img class="theme_img" id="theme_sport_img" src="img/themes/sport.png">
+                    </div>
+                    <!-- RANDOM -->
+                    <div class="theme_random" id="theme_random">
+                        <img id="theme_random_img" src="img/themes/random.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/navigation_main.js"></script>
+        <script type="text/javascript" src="js/navigation_theme_1p.js"></script>
+    </body>
+</html>

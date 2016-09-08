@@ -1,0 +1,247 @@
+var rooting_delay = 900;
+
+// MAIN NAVIGATION .JS
+console.log('SCRIPT NAVIGUATION - OUVERT');
+var app = document.getElementById('app');
+var header_bar = document.getElementById('bar-header');
+var interface_content = document.getElementById('interface_content');
+var interface_menu = document.getElementById('menu_interface');
+//
+var main_play = document.getElementById('main_play');
+var main_play_img = document.getElementById('main_play_img');
+//
+var main_players = document.getElementById('main_players');
+var player_1 = document.getElementById('player_1');
+var player_2 = document.getElementById('player_2');
+var player_1_img = document.getElementById('player_1_img');
+var player_2_img = document.getElementById('player_2_img');
+//
+var main_themes = document.getElementById('main_players');
+//var player_1 = document.getElementById('player_1');
+//var player_2 = document.getElementById('player_2');
+//var player_1_img = document.getElementById('player_1_img');
+//var player_2_img = document.getElementById('player_2_img');
+
+/****************************************************************/
+/****************************************************************/
+/****** INDEX ******/
+$("#main_play").click(function(){
+	undisplayElementsHome();
+	setTimeout(function() { 
+		document.location.href="players.html";
+	}, rooting_delay);
+	
+});
+function undisplayElementsHome(){
+	//
+	undisplayHead();
+
+	main_play_img.style.width = "0px";
+	main_play_img.style.height = "0px";
+	main_play_img.style.margin= "50%";
+	main_play_img.style.opacity = "0";
+	main_play_img.style.transition = "0.4s ease";
+
+	setTimeout(function() { 
+	main_play.style.width = "0px";
+	main_play.style.height = "0px";
+	main_play.style.margin= "0px";
+	main_play.style.opacity= "0";
+	main_play.style.transition = "0.7s ease";
+	}, 200);
+}
+
+function displayElementsHome(){
+	//
+	displayHead();
+
+	main_play.style.width = "200px";
+	main_play.style.height = "200px";
+	main_play.style.margin= "-100px 0 0 -100px";
+	main_play.style.opacity= "1";
+	main_play.style.transition = "0.7s ease-out";
+
+	setTimeout(function() { 
+	main_play_img.style.width = "70%";
+	main_play_img.style.height = "70%";
+	main_play_img.style.margin= "15% 0 0 19%";
+	main_play_img.style.opacity = "1";
+	main_play_img.style.transition = "0.4s ease-out";
+	}, 200);
+}
+
+/****************************************************************/
+/****************************************************************/
+/****** APP & HEAD ******/
+function displayApp(){
+	app.style.opacity = "1";
+	app.style.transition = "0.3s ease-out";
+	displayHead();
+}
+
+function undisplayApp(){
+	app.style.opacity = "0";
+	app.style.transition = "0.3s ease";
+}
+
+function displayHead(){
+	header_bar.style.opacity = "1";
+	header_bar.style.transition = "0.4s ease-out";
+}
+
+function undisplayHead(){
+	header_bar.style.opacity = "0";
+	header_bar.style.transition = "0.4s ease";
+}
+
+/****************************************************************/
+/****************************************************************/
+/****** PLAYERS ******/
+
+// FONCTIONS DE REDIRECTIONS
+function root1player(){
+	setTimeout(function() { 
+		document.location.href="themes_1p.html";
+	}, rooting_delay);
+}
+function root2players(){
+	setTimeout(function() { 
+		document.location.href="index.html";
+	}, rooting_delay);
+}
+
+// FONCTIONS DE POSITIONNEMENTS - INIT & SWITCH
+function displayElementsPlayers(){
+	displayPlayers();
+}
+$("#player_1").click(function(){
+	removePlayers();
+	root1player();
+});
+$("#player_2").click(function(){
+	removePlayers();
+	root2players();
+});
+function removePlayers(){
+	//
+	undisplayHead();
+	// 1 PLAYER
+	player_1_img.style.width = "0px";
+	player_1_img.style.height = "0px";
+	player_1_img.style.margin= "50%";
+	player_1_img.style.opacity = "0";
+	player_1_img.style.transition = "0.4s ease";
+
+	setTimeout(function() { 
+	player_1.style.width = "0px";
+	player_1.style.height = "0px";
+	player_1.style.top= "0px";
+	player_1.style.left= "5px";
+	player_1.style.opacity= "0";
+	player_1.style.transition = "0.7s ease";
+	}, 200);
+	// 2 PLAYERS
+	player_2_img.style.width = "0px";
+	player_2_img.style.height = "0px";
+	player_2_img.style.margin= "50%";
+	player_2_img.style.opacity = "0";
+	player_2_img.style.transition = "0.4s ease";
+
+	setTimeout(function() { 
+	player_2.style.width = "0px";
+	player_2.style.height = "0px";
+	player_2.style.top= "0px";
+	player_2.style.left= "5px";
+	player_2.style.opacity= "0";
+	player_2.style.transition = "0.7s ease";
+	}, 200);
+
+	// POINT CENTRAL
+	setTimeout(function() {
+	main_players.style.opacity= "0";
+	main_players.style.transition = "0.3s ease";
+	}, 500);
+}
+function displayPlayers(){
+	//
+	displayHead();
+
+	main_players.style.opacity= "1";
+	main_players.style.transition = "0.2s ease-out";
+	// 1 PLAYER
+	player_1.style.width = "150px";
+	player_1.style.height = "150px";
+	player_1.style.top= "-200px";
+	player_1.style.left= "-75px";
+	player_1.style.opacity= "1";
+	player_1.style.transition = "0.7s ease-out";
+
+	setTimeout(function() { 
+	player_1_img.style.width = "80px";
+	player_1_img.style.height = "80px";
+	player_1_img.style.margin= "22% 0 0 24%";
+	player_1_img.style.opacity = "1";
+	player_1_img.style.transition = "0.4s ease-out";
+	}, 200);
+	// 2 PLAYERS
+	player_2.style.width = "150px";
+	player_2.style.height = "150px";
+	player_2.style.top= "50px";
+	player_2.style.left= "-75px";
+	player_2.style.opacity= "1";
+	player_2.style.transition = "0.7s ease-out";
+
+	setTimeout(function() { 
+	player_2_img.style.width = "80px";
+	player_2_img.style.height = "80px";
+	player_2_img.style.margin= "22% 0 0 24%";
+	player_2_img.style.opacity = "1";
+	player_2_img.style.transition = "0.4s ease-out";
+	}, 200);
+}
+
+/****************************************************************/
+/****************************************************************/
+/****** MENU ******/
+$("#root_home").click(function(){
+	undisplayApp();
+	setTimeout(function() { 
+		document.location.href="index.html";
+	}, rooting_delay);
+});
+$("#root_players").click(function(){
+	undisplayApp();
+	setTimeout(function() { 
+		document.location.href="players.html";
+	}, rooting_delay);
+});
+$("#root_theme_1p").click(function(){
+	undisplayApp();
+	setTimeout(function() { 
+		document.location.href="themes_1p.html";
+	}, rooting_delay);
+});
+
+function drive_home(){
+	setTimeout(function() { 
+		document.location.href="index.html";
+	}, rooting_delay);
+}
+function drive_players(){
+	setTimeout(function() { 
+		document.location.href="players.html";
+	}, rooting_delay);
+}
+function root_menu(){
+	undisplayApp();
+	setTimeout(function() { 
+		document.location.href="menu.html";
+	}, rooting_delay);
+}
+
+// GO BACK
+function GoBack()
+{
+	window.location=history.go(-1);
+	window.location.reload();
+}
