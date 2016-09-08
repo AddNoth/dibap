@@ -30,6 +30,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d2031', end
 }
 /*********************************************/
 /*********************************************/
+/* LOADING */
+/*********************************************/
+/*********************************************/
+.dibap-train{
+    margin: 0;
+    padding: 0;
+    float: left;
+    display: block;
+    width: 50%;
+    height: 50%;
+}
+/*********************************************/
+/*********************************************/
 /* BAR SUPERIEURE */
 /*********************************************/
 /*********************************************/
@@ -62,7 +75,19 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0d2031', end
     /*background-color: rgba(255,0,0,0.2);*/
 }
 .bar-header .button-left{left:0;/*background: rgba(195,215,225, 0.2);*/}
-.bar-header .button-right{right:0;text-align: right;/*background: rgba(195,215,225, 0.2);*/}
+.bar-header .button-right{
+right:0;text-align: right;
+/*background: rgba(195,215,225, 0.2);*/
+position: absolute;
+top: 15px;
+right: 1%;
+width: 50px;
+height: 50px;
+min-width: 80px;
+min-height: 80px;
+border-radius: 100%;
+}
+
 
 .categorie{
 	position: absolute;
@@ -114,7 +139,7 @@ h3#head-title{
 /********************/
 /* QUESTION / RESULTAT */
 /********************/
-#question, #datavision{
+#question{
 	float: left;
 	display: block;
 	margin:0 auto;
@@ -126,7 +151,7 @@ h3#head-title{
 	color: #0d2031;
 }
 
-#question-container, #datavision_container{
+#question-container{
 	margin:0 auto;
 	padding: 0 auto;
 	width: 95%;
@@ -313,6 +338,63 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5dbba1', end
 	padding-top: 20px;
 }
 
+/********************/
+/* LOADING */
+/********************/
 
+.source-loading{
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 0px;
+	height: 0px;
+	float: left;
+	background: red;
+}
+
+.circle_1,.circle_2,.circle_3{
+	position: absolute;
+	margin: 0;
+	width: 0px;
+	height: 0px;
+	background: white;
+	border-radius: 100px;
+	opacity: 0;
+}
+.circle_1{
+	animation-name: ab;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+}
+.circle_2{
+	animation-name: bc;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+}
+.circle_3{
+	animation-name: cd;
+    animation-duration: 2.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes ab {
+    0%   {width:0;height:0;margin: 0; }
+    40% {width:60px;height:60px;margin: -30px 0 0 -30px;opacity: 0.5;}
+    50% {opacity: 0;}
+    100% {width:60px;height:60px;margin: -30px 0 0 -30px;opacity: 0;}
+}
+@keyframes bc {
+    0%   {width:0;height:0;margin: 0; }
+    30%   {width:0;height:0;margin: 0; }
+    70% {width:60px;height:60px;margin: -30px 0 0 -30px;opacity: 0.5;}
+    80% {opacity: 0;}
+    100% {width:60px;height:60px;margin: -30px 0 0 -30px;opacity: 0;}
+}
+@keyframes cd {
+    0%   {width:0;height:0;margin: 0; }
+    40%   {width:0;height:0;margin: 0; }
+    90% {width:60px;height:60px;margin: -30px 0 0 -30px;opacity: 0.5;}
+    100% {width:60px;height:60px;margin: -30px 0 0 -30px;opacity: 0;}
+}
 
 

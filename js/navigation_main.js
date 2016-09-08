@@ -106,7 +106,7 @@ function root1player(){
 }
 function root2players(){
 	setTimeout(function() { 
-		document.location.href="index.html";
+		//document.location.href="index.html"; UPDATE 
 	}, rooting_delay);
 }
 
@@ -119,8 +119,8 @@ $("#player_1").click(function(){
 	root1player();
 });
 $("#player_2").click(function(){
-	removePlayers();
-	root2players();
+	//removePlayers(); UPDATE 
+	//root2players(); UPDATE 
 });
 function removePlayers(){
 	//
@@ -244,4 +244,14 @@ function GoBack()
 {
 	window.location=history.go(-1);
 	window.location.reload();
+}
+
+var prochainement = document.getElementById('prochainement');
+//
+function prochainementSurDibap(){
+	console.log('im in !!!');
+	prochainement.style.display='block';
+	setTimeout(function() { 
+		prochainement.style.display='none';
+	}, 2000);
 }

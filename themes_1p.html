@@ -24,6 +24,39 @@
                 </a>
             </div>
             <div class="interface">
+                <!-- BLOCK PROCHAINEMENT -->
+                 <style type="text/css">
+                        .prochainement{
+                            width: 100%;
+                            height: 100%;
+                            float: left;
+                            margin:0 auto;
+                            padding: 0 auto;
+                            display: block;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            z-index: 10000;
+                            background: rgba(0,0,0,0.3);
+                            display: none;
+                        }
+                        .prochainement h1{
+                            display: block;
+                            width: 33%;
+                            border-radius: 5px;
+                            height: auto !important;
+                            margin: 0 auto;
+                            margin-top:25%;
+                            padding: 25px 50px;
+                            background: #e7f4fa;
+                            color: #0d2031;
+                            opacity: 0.93;
+                        }
+                    </style>
+                    <div class="prochainement" id="prochainement">
+                        <h1>Prochainement sur dibap' ...</h1>
+                    </div>
+                    <!-- FIN DU BLOCK PROCHAINEMENT -->
                 <div class="dibap-train" style="height:45% !important;"></div>
                 <div class="dibap-train" style="height:45% !important;"></div>
                 <div class="dibap-train"></div>
@@ -32,31 +65,31 @@
                     <div class="themes_elements" id="theme_style">
                     </div>
                     <!-- Politique -->
-                    <div class="themes_elements" id="theme_politique">
+                    <div class="themes_elements" id="theme_politique" style="opacity:0.3 !important;" onclick="prochainementSurDibap();">
                         <img class="theme_img" id="theme_politique_img" src="img/themes/politique.png">
                     </div>
                     <!-- Actu -->
-                    <div class="themes_elements" id="theme_actu">
+                    <div class="themes_elements" id="theme_actu" style="opacity:0.3 !important;" onclick="prochainementSurDibap();">
                         <img class="theme_img" id="theme_actu_img" src="img/themes/actualite.png">
                     </div>
                     <!-- Cinema -->
-                    <div class="themes_elements" id="theme_cinema">
+                    <div class="themes_elements" id="theme_cinema" style="opacity:0.3 !important;" onclick="prochainementSurDibap();">
                         <img class="theme_img" id="theme_cinema_img" src="img/themes/cinema.png">
                     </div>
                     <!-- Paint -->
-                    <div class="themes_elements" id="theme_paint">
+                    <div class="themes_elements" id="theme_paint" style="opacity:0.3 !important;" onclick="prochainementSurDibap();">
                         <img class="theme_img" id="theme_paint_img" src="img/themes/paint.png">
                     </div>
                     <!-- Musique -->
-                    <div class="themes_elements" id="theme_musique">
+                    <div class="themes_elements" id="theme_musique" style="opacity:0.3 !important;" onclick="prochainementSurDibap();">
                         <img class="theme_img" id="theme_musique_img" src="img/themes/musique.png">
                     </div>
                     <!-- Cuisine -->
-                    <div class="themes_elements" id="theme_cuisine">
+                    <div class="themes_elements" id="theme_cuisine" style="opacity:0.3 !important;" onclick="prochainementSurDibap();">
                         <img class="theme_img" id="theme_cuisine_img" src="img/themes/cuisine.png">
                     </div>
                     <!-- Sport -->
-                    <div class="themes_elements" id="theme_sport">
+                    <div class="themes_elements" id="theme_sport" style="opacity:0.3 !important;" onclick="prochainementSurDibap();">
                         <img class="theme_img" id="theme_sport_img" src="img/themes/sport.png">
                     </div>
                     <!-- RANDOM -->

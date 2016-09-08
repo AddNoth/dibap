@@ -7,6 +7,7 @@
 		<script type="text/javascript" src="../../js/jquery.js"></script>
 		<script type="text/javascript" src="../../js/geturi.js"></script>
 		<link rel="stylesheet" type="text/css" href="../../css/question.css">
+		<link rel="stylesheet" type="text/css" href="../../css/stats.css">
 		<script type="text/javascript">
 			$(document).ready(function(){
 				var domain = "http://dibap.esy.es/host/sequenceRandom/";
@@ -28,7 +29,7 @@
                 //$("#question_id").val(question_id);
 //document.getElementById("sequence_iteration").innerHTML = sequence_iteration;
 //document.getElementById("question_titre").innerHTML 	= question_titre;
-document.getElementById("question_categorie").innerHTML = question_categorie;
+//document.getElementById("question_categorie").innerHTML = question_categorie;
 document.getElementById("question_plus").innerHTML 		= question_plus;
 document.getElementById("question_moins").innerHTML 	= question_moins;
 document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
@@ -92,31 +93,77 @@ document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
 						}, 10);
 					});
 				}
+			
+				function displayImageCategorie(){
+					d = document.getElementById('question_categorie');
+					if(question_categorie=='politique'){
+						d.innerHTML = '<img src="../../img/themes/politique.png">';
+					}else if(question_categorie=='actu'){
+						d.innerHTML = '<img src="../../img/themes/actualite.png">';
+					}else if(question_categorie=='cuisine'){
+						d.innerHTML = '<img src="../../img/themes/cuisine.png">';
+					}else if(question_categorie=='cinema'){
+						d.innerHTML = '<img src="../../img/themes/cinema.png">';
+					}else if(question_categorie=='sport'){
+						d.innerHTML = '<img src="../../img/themes/sport.png">';
+					}else if(question_categorie=='musique'){
+						d.innerHTML = '<img src="../../img/themes/musique.png">';
+					}else if(question_categorie=='paint'){
+						d.innerHTML = '<img src="../../img/themes/paint.png">';
+					}else if(question_categorie=='random'){
+						d.innerHTML = '<img src="../../img/themes/random.png">';
+					}
+				}
+				displayImageCategorie();
+
+				// CALCUL
+				var display_result_plus = (question_plus * 100)/question_nb_vote;
+				var display_result_moins = (question_moins * 100)/question_nb_vote;
+				// CONVERSION
+				display_result_plus = parseInt(display_result_plus);
+				display_result_moins = parseInt(display_result_moins);
+				console.log('RESULT PLUS : '+display_result_plus);
+				console.log('RESULT MOINS : '+display_result_moins);
+				// AFFICHAGE
+				document.getElementById('question_plus_visu').style.height = ''+display_result_plus+'%';
+				document.getElementById('question_moins_visu').style.height = ''+display_result_moins+'%';
 			});
 		</script>
 	</head>
 	<body>
-		<div class="header-question" style="margin-bottom:80px;">
-			<div>
-				<h3 id="question_categorie"></h3>
-				<a href="../../index.html" class="button button-clear">Home</a>
+		<div class="app" id="app">
+			<div class="bar-header" id="bar-header">
+				<div class="categorie" id="question_categorie"></div>
+				<h1 class="title">Stats</h1>
+				<a class="button button-right" onclick="root_menu();">
+                    <img src="../../img/ui/navicon.png" height="80%" style="margin-top:10%;margin-right:20px;">
+                </a>
 			</div>
-		</div>
-		<div id="datavision">
-			<div id="datavision_container">
-				<div class="datavision_titre">
-					<h4>Data visualisation</h4>
+			<div id="stats">
+				<div id="stats-container" style="color:white">
+					<div class="nb_vote">
+						<h3><span id="question_nb_vote"></span> votants<h3>
+					</div>
+					<div class="votes">
+						<div class="vote-plus" id="question_plus_visu">
+							<div class="result" id="question_plus"></div>
+						</div>
+						<div class="vote-moins" id="question_moins_visu">
+							<div class="result" id="question_moins"></div>
+						</div>
+					</div>
 				</div>
-				<div class="datavision_result">
-					<h1>Vote pour : <span id="question_plus"></span></h1>
-					<h1>Vote contre : <span id="question_moins"></span></h1>
-					<h1>Nombre vote : <span id="question_nb_vote"></span></h1>
-				</div>	
+			</div>
+			<div id="action">
+				<div class="button-vote" style="opacity:0;"></div>
+				<div class="button-vote" style="opacity:0;"></div>
+				<div class="block-switch">
+					<div id="switch" class="button-switch">
+						<img src="../../img/ui/next-black.png" alt="next" title="vote-next">
+					</div>
+				</div>
 			</div>
 		</div>
-		<div id="action">
-			<input type="button" id="switch" class="button button-block" value="Switch"/>
-		</div> 
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 	</body>
