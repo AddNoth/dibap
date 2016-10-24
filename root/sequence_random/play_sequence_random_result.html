@@ -71,7 +71,7 @@ document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
 								});
 								setTimeout(function() {
 									document.location.href="play_sequence_random.html?sequence_id="+sequence_id_next+"&sequence_iteration="+sequence_iteration_next+"&question_id="+sequence_question_id_next+"&question_titre="+question_titre_next+"&question_categorie="+question_categorie_next+"&question_plus="+question_plus_next+"&question_moins="+question_moins_next+"&question_nb_vote="+question_nb_vote_next+"&dibapers="+dibapers;
-								}, 10);
+								}, 900);
 							});
 		                });
 		            });
@@ -130,12 +130,12 @@ document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
 			});
 		</script>
 	</head>
-	<body>
-		<div class="app" id="app">
+	<body onLoad="displayApp();" onreload="displayApp();">
+		<div class="app" id="app"  style="opacity: 0">
 			<div class="bar-header" id="bar-header">
 				<div class="categorie" id="question_categorie"></div>
 				<h1 class="title">Stats</h1>
-				<a class="button button-right" onclick="root_menu();">
+				<a class="button button-right" onclick="root_menu();undisplayApp();">
                     <img src="../../img/ui/navicon.png" height="80%" style="margin-top:10%;margin-right:20px;">
                 </a>
 			</div>
@@ -158,7 +158,7 @@ document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
 				<div class="button-vote" style="opacity:0;"></div>
 				<div class="button-vote" style="opacity:0;"></div>
 				<div class="block-switch">
-					<div id="switch" class="button-switch">
+					<div id="switch" class="button-switch" onclick="undisplayApp();">
 						<img src="../../img/ui/next-black.png" alt="next" title="vote-next">
 					</div>
 				</div>
@@ -166,5 +166,7 @@ document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
 		</div>
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="../../js/transition_question.js"></script>
+
 	</body>
 </html>

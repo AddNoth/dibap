@@ -56,6 +56,8 @@
 
 .vote-plus{
 	left: 0;
+	height: 0;
+	transition: 1s ease;
 	/*height: 40%;*/
 
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ec661d+0,ce4216+100 */
@@ -67,6 +69,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ec661d', end
 }
 .vote-moins{
 	right:0;
+	height: 0;
+	transition: 1s ease;
 	/*height: 40%;*/
 
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5dbba1+0,58b6c9+100 */
