@@ -9,6 +9,33 @@
 		<script type="text/javascript" src="../../js/geturi.js"></script>
 		<link rel="stylesheet" type="text/css" href="../../css/question.css">
 		<script type="text/javascript">
+		/***
+		*
+		*** TIMER
+		*
+		***/
+		currentTime = 0;
+		window.limitTime = 6000; // LIMIT 10 secondes
+		window.timerStopped = false;
+
+		setInterval(function(){
+			// START TIMER
+			if (currentTime<limitTime) {
+				window.currentTime += 100; // 1/10 sec
+				console.log('Here is my current time = '+currentTime);
+				console.log('Here is my limitime = '+limitTime);
+			}else if(currentTime>limitTime){
+				// STOP TIMER
+				currentTime = limitTime;
+				window.timerStopped = true;
+			}
+		}, 100); // 1/10 sec
+
+		/***
+		*
+		*** MAIN
+		*
+		***/
 			$(document).ready(function(){
 				var domain = "http://dibap.esy.es/host/sequenceRandom/";
 				var dibapers = decodeURI(getUrlVars()["dibapers"]);
@@ -22,16 +49,18 @@
                 var question_moins = decodeURI(getUrlVars()["question_moins"]);
                 var question_nb_vote = decodeURI(getUrlVars()["question_nb_vote"]);
                 var dibapers = decodeURI(getUrlVars()["dibapers"]);
-                sequence_iteration = parseInt(sequence_iteration);
+                window.switch_question = decodeURI(getUrlVars()["switch_question"]);
+                window.outspeedtransition = 330; // Same that css undisplayApp(); // 0.3 sec
                 question_plus = parseInt(question_plus);
                 question_moins = parseInt(question_moins);
                 question_nb_vote = parseInt(question_nb_vote);
                 console.log('variable declare');
 
+
                 //$("#sequence_question_id").val(sequence_question_id);
                 //$("#question_id").val(question_id);
 				//document.getElementById("sequence_iteration").innerHTML = sequence_iteration;
-				document.getElementById("question_titre").innerHTML 	= question_titre;
+				document.getElementById("question_titre").innerHTML = question_titre;
 				
 
 				/************************************************/
@@ -41,22 +70,30 @@
                 /************************************************/
                 console.log('moins');
 				$("#plus").click(function(){
-					$.ajax({
-						type: "GET",
-						url: domain+"host_sequence_insert_plus.php",
-						dataType:'json',
-						data: {
-							'question_id': question_id,
-							'question_user_vote': dibapers
-						},
-						crossDomain: true,
-						cache: false
-					});
-					setTimeout(function() {
-					question_plus = question_plus +  1;
-					question_nb_vote = question_nb_vote + 1;
-					document.location.href="play_sequence_random_result.html?sequence_id="+sequence_id+"&sequence_iteration="+sequence_iteration+"&sequence_question_id="+sequence_question_id+"&question_id="+sequence_question_id+"&question_titre="+question_titre+"&question_categorie="+question_categorie+"&question_plus="+question_plus+"&question_moins="+question_moins+"&question_nb_vote="+question_nb_vote+"&dibapers="+dibapers;
-					}, 10);
+					if (window.currentTime>=window.limitTime) {
+						undisplayApp();
+						// SEND INFOS
+						setTimeout(function() { 
+							$.ajax({
+								type: "GET",
+								url: domain+"host_sequence_insert_plus.php",
+								dataType:'json',
+								data: {
+									'question_id': question_id,
+									'question_user_vote': dibapers
+								},
+								crossDomain: true,
+								cache: false
+							});
+							setTimeout(function() {
+							question_plus = question_plus +  1;
+							question_nb_vote = question_nb_vote + 1;
+							document.location.href="play_sequence_random_result.html?sequence_id="+sequence_id+"&sequence_iteration="+sequence_iteration+"&sequence_question_id="+sequence_question_id+"&question_id="+sequence_question_id+"&question_titre="+question_titre+"&question_categorie="+question_categorie+"&question_plus="+question_plus+"&question_moins="+question_moins+"&question_nb_vote="+question_nb_vote+"&dibapers="+dibapers;
+							}, 10);
+						}, outspeedtransition);
+					}else{
+						// DO NOT SEND ANYTHING
+					}
 		        });
 
 		        /************************************************/
@@ -66,22 +103,30 @@
                 /************************************************/
                 console.log('moins');
 				$("#moins").click(function(){
-					$.ajax({
-						type: "GET",
-						url: domain+"host_sequence_insert_moins.php",
-						dataType:'json',
-						data: {
-							'question_id': question_id,
-							'question_user_vote' : dibapers
-						},
-						crossDomain: true,
-						cache: false
-					});
-					setTimeout(function() {
-					question_moins = question_moins +  1;
-					question_nb_vote = question_nb_vote + 1;
-					document.location.href="play_sequence_random_result.html?sequence_id="+sequence_id+"&sequence_iteration="+sequence_iteration+"&sequence_question_id="+sequence_question_id+"&question_id="+sequence_question_id+"&question_titre="+question_titre+"&question_categorie="+question_categorie+"&question_plus="+question_plus+"&question_moins="+question_moins+"&question_nb_vote="+question_nb_vote+"&dibapers="+dibapers;
-					}, 10);
+					if (window.currentTime>=window.limitTime) {
+						undisplayApp();
+						// SEND INFOS
+						setTimeout(function() { 
+							$.ajax({
+								type: "GET",
+								url: domain+"host_sequence_insert_moins.php",
+								dataType:'json',
+								data: {
+									'question_id': question_id,
+									'question_user_vote' : dibapers
+								},
+								crossDomain: true,
+								cache: false
+							});
+							setTimeout(function() {
+							question_moins = question_moins +  1;
+							question_nb_vote = question_nb_vote + 1;
+							document.location.href="play_sequence_random_result.html?sequence_id="+sequence_id+"&sequence_iteration="+sequence_iteration+"&sequence_question_id="+sequence_question_id+"&question_id="+sequence_question_id+"&question_titre="+question_titre+"&question_categorie="+question_categorie+"&question_plus="+question_plus+"&question_moins="+question_moins+"&question_nb_vote="+question_nb_vote+"&dibapers="+dibapers;
+							}, 10);
+						}, outspeedtransition);
+					}else{
+						// DO NOT SEND ANYTHING
+					}
 		        });
 
 				/************************************************/
@@ -105,6 +150,7 @@
 		                    var question_plus_next = field.question_plus;
 		                    var question_moins_next = field.question_moins;
 		                    var question_nb_vote_next = field.question_nb_vote;
+		                    var switch_question = '1';
 		                    
 		                    // SWITCH FUNCTION
 							$("#switch").click(function(){
@@ -122,7 +168,7 @@
 								});
 								setTimeout(function() {
 									console.log('switch 2');
-									document.location.href="play_sequence_random.html?sequence_id="+sequence_id_next+"&sequence_iteration="+sequence_iteration_next+"&question_id="+sequence_question_id_next+"&question_titre="+question_titre_next+"&question_categorie="+question_categorie_next+"&question_plus="+question_plus_next+"&question_moins="+question_moins_next+"&question_nb_vote="+question_nb_vote_next+"&dibapers="+dibapers;
+									document.location.href="play_sequence_random.html?sequence_id="+sequence_id_next+"&sequence_iteration="+sequence_iteration_next+"&question_id="+sequence_question_id_next+"&question_titre="+question_titre_next+"&question_categorie="+question_categorie_next+"&question_plus="+question_plus_next+"&question_moins="+question_moins_next+"&question_nb_vote="+question_nb_vote_next+"&dibapers="+dibapers+"&switch_question="+switch_question;
 								}, 10);
 								console.log('switch 3');
 							});
@@ -167,11 +213,21 @@
 					}
 				}
 				displayImageCategorie();
+
+				
 			});
 		</script>
 	</head>
-	<body onload="">
-		<div class="app" id="app">
+	<script type="text/javascript">
+
+	</script>
+	<body onLoad="displayAppQuest();" onreload="displayAppQuest();">
+		<div class="app" id="app" style="opacity: 0;">
+			<!-- *
+			*
+			*** Top Naviguation
+			*
+			* -->
 			<div class="bar-header" id="bar-header">
 				<div class="categorie" id="question_categorie"></div>
 				<h1 class="title">question</h1>
@@ -179,6 +235,11 @@
                     <img src="../../img/ui/navicon.png" height="80%" style="margin-top:10%;margin-right:20px;">
                 </a>
 			</div>
+			<!-- *
+			*
+			*** Question
+			*
+			* -->
 			<div id="question">
 				<div id="question-container">
 					<div class="question-block-pointer">
@@ -189,15 +250,20 @@
 					</div>
 				</div>
 			</div>
+			<!-- *
+			*
+			*** Bottom Naviguation
+			*
+			* -->
 			<div id="action">
 				<div id="progressTime" class="block-progress">
-					<div class="block-progress-background"></div>
+					<div id="progressTimeBar" class="block-progress-background" style="margin-left: -100%;"></div>
 				</div>
-				<div id="plus" class="button-vote">
+				<div id="plus" class="button-vote" style="opacity: 0.6;">
 					<img src="../../img/ui/plus.png" alt="vote-plus" title="vote-plus">
 					<br><span>OUI</span>
 				</div>
-				<div id="moins" class="button-vote">
+				<div id="moins" class="button-vote" style="opacity: 0.6;">
 					<img src="../../img/ui/moins.png" alt="vote-moins" title="vote-moins">
 					<br><span>NON</span>
 				</div>
@@ -208,8 +274,16 @@
 				</div>
 			</div>
 		</div>
+		<!-- *
+		*
+		*** Import JS files
+		*
+		* -->
 		<script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="js/navigation_main.js"></script>
+        <script type="text/javascript" src="../../js/transition_question.js"></script>
+        <script type="text/javascript">
+        	
+        </script>
 	</body>
 </html>

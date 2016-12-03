@@ -55,6 +55,7 @@ document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
 		                    var question_plus_next = field.question_plus;
 		                    var question_moins_next = field.question_moins;
 		                    var question_nb_vote_next = field.question_nb_vote;
+		                    var switch_question='0';
 
 		                    // SWITCH FUNCTION
 							$("#switch").click(function(){
@@ -70,7 +71,7 @@ document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
 									cache: false
 								});
 								setTimeout(function() {
-									document.location.href="play_sequence_random.html?sequence_id="+sequence_id_next+"&sequence_iteration="+sequence_iteration_next+"&question_id="+sequence_question_id_next+"&question_titre="+question_titre_next+"&question_categorie="+question_categorie_next+"&question_plus="+question_plus_next+"&question_moins="+question_moins_next+"&question_nb_vote="+question_nb_vote_next+"&dibapers="+dibapers;
+									document.location.href="play_sequence_random.html?sequence_id="+sequence_id_next+"&sequence_iteration="+sequence_iteration_next+"&question_id="+sequence_question_id_next+"&question_titre="+question_titre_next+"&question_categorie="+question_categorie_next+"&question_plus="+question_plus_next+"&question_moins="+question_moins_next+"&question_nb_vote="+question_nb_vote_next+"&dibapers="+dibapers+"&switch_question="+switch_question;
 								}, 900);
 							});
 		                });
@@ -122,16 +123,22 @@ document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
 				// CONVERSION
 				display_result_plus = parseInt(display_result_plus);
 				display_result_moins = parseInt(display_result_moins);
-				console.log('RESULT PLUS : '+display_result_plus);
-				console.log('RESULT MOINS : '+display_result_moins);
+				// Permet d'éviter de toucher le haut de la section */
+				if(display_result_moins>95){display_result_moins=95}
+				if(display_result_plus>95){display_result_plus=95}
 				// AFFICHAGE
 				document.getElementById('question_plus_visu').style.height = ''+display_result_plus+'%';
 				document.getElementById('question_moins_visu').style.height = ''+display_result_moins+'%';
 			});
 		</script>
 	</head>
-	<body onLoad="displayApp();" onreload="displayApp();">
-		<div class="app" id="app"  style="opacity: 0">
+	<body onLoad="displayAppQuestResult();" onreload="displayAppQuestResult();">
+		<div class="app" id="app" style="opacity: 0">
+			<!-- *
+			*
+			***	Boutons + / - / Switch
+			*
+			* -->
 			<div class="bar-header" id="bar-header">
 				<div class="categorie" id="question_categorie"></div>
 				<h1 class="title">Stats</h1>
@@ -139,6 +146,11 @@ document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
                     <img src="../../img/ui/navicon.png" height="80%" style="margin-top:10%;margin-right:20px;">
                 </a>
 			</div>
+			<!-- *
+			*
+			* Resultat 
+			*
+			*-->
 			<div id="stats">
 				<div id="stats-container" style="color:white">
 					<div class="nb_vote">
@@ -154,6 +166,11 @@ document.getElementById("question_nb_vote").innerHTML 	= question_nb_vote;
 					</div>
 				</div>
 			</div>
+			<!-- *
+			*
+			* Boutons Switch
+			*
+			* -->
 			<div id="action">
 				<div class="button-vote" style="opacity:0;"></div>
 				<div class="button-vote" style="opacity:0;"></div>

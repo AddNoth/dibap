@@ -29,9 +29,10 @@
                         var question_plus = field.question_plus;
                         var question_moins = field.question_moins;
                         var question_nb_vote = field.question_nb_vote;
+                        var switch_question='0';
 
                         setTimeout(function() { 
-                            document.location.href="play_sequence_random.html?sequence_id="+sequence_id+"&sequence_iteration="+sequence_iteration+"&sequence_question_id="+sequence_question_id+"&question_id="+sequence_question_id+"&question_titre="+question_titre+"&question_categorie="+question_categorie+"&question_plus="+question_plus+"&question_moins="+question_moins+"&question_nb_vote="+question_nb_vote+"&dibapers="+dibapers+"";
+                            document.location.href="play_sequence_random.html?sequence_id="+sequence_id+"&sequence_iteration="+sequence_iteration+"&sequence_question_id="+sequence_question_id+"&question_id="+sequence_question_id+"&question_titre="+question_titre+"&question_categorie="+question_categorie+"&question_plus="+question_plus+"&question_moins="+question_moins+"&question_nb_vote="+question_nb_vote+"&dibapers="+dibapers+"&switch_question="+switch_question;
                         }, 3500);
                     });
                 });
