@@ -38,7 +38,6 @@ function displayBubble(){
 }
 
 function displayTimer(){
-	alert();
 	var timerLimit=window.limitTime/1000; // Conversion en seconde pour le CSS
 	progressTimeBarElement.style.marginLeft = "0%";
 	progressTimeBarElement.style.transition = ""+timerLimit+"s ease-out";

@@ -3,7 +3,7 @@
 	//$q="SELECT * FROM course_details";
 
 	// NUMERO DE SEQUENCE
-	$num_sequence = rand(1,2); // = sequence_id // DYNAMIC
+	$num_sequence = rand(1,3); // = sequence_id // DYNAMIC
 	//$num_sequence = 1;
 	$num_question = 1;
 	// REQUETE TESTÉ PHPMYADMIN
